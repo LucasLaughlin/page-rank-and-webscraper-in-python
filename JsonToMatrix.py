@@ -20,7 +20,7 @@ class JsonToMatrix():
         
 
 def main():
-    converter = JsonToMatrix("./backlinkscraper/"+argv[1])
+    converter = JsonToMatrix("./backlinkscraper/adjacency.py")
     matrix = converter.getMatrix()
     print(matrix)
                 
