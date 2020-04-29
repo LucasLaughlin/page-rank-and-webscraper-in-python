@@ -14,6 +14,7 @@ BOT_NAME = 'backlinkscraper'
 SPIDER_MODULES = ['backlinkscraper.spiders']
 NEWSPIDER_MODULE = 'backlinkscraper.spiders'
 
+DEPTH_LIMIT = 3
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'backlinkscraper (+http://www.yourdomain.com)'
@@ -49,6 +50,10 @@ CONCURRENT_REQUESTS = 100
 #SPIDER_MIDDLEWARES = {
 #    'backlinkscraper.middlewares.BacklinkscraperSpiderMiddleware': 543,
 #}
+
+SPIDER_MIDDLEWARES = {
+    'scrapy.spidermiddlewares.depth.DepthMiddleware': 543,
+}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html

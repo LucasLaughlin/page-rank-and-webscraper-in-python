@@ -1,5 +1,6 @@
 import numpy as np
 import JsonToMatrix
+import collections
 
 
 class PageRanker:
@@ -62,7 +63,7 @@ if __name__ == "__main__":
     #         [0, 0, 1, 1, 0],
     #     ]
     # )
-    converter = JsonToMatrix.JsonToMatrix("backlinkscraper/adjacency.json")
+    converter = JsonToMatrix.JsonToMatrix("./backlinkscraper/cu.json")
     input_matrix = converter.getMatrix()
 
     input_matrix = input_matrix / input_matrix.sum(axis=0, keepdims=1)
@@ -70,3 +71,15 @@ if __name__ == "__main__":
     page_ranks = ranker.run(100, 0.85)
     print("=========================")
     print(f"final page_ranks:\n{page_ranks}")
+    
+    
+    ranks = dict(zip(page_ranks.ravel(), converter.getUrls()))
+    
+    
+    
+    sorted_d = collections.OrderedDict(sorted(ranks.items(), reverse=True))
+    first10 = {k: sorted_d[k] for k in list(sorted_d)[:10]}
+    for key, value in first10.items():
+        print(key, ':', value)
+        
+
